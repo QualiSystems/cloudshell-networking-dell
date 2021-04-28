@@ -8,9 +8,9 @@ from cloudshell.shell.flows.autoload.basic_flow import AbstractAutoloadFlow
 
 
 class DNOSSnmpAutoloadFlow(AbstractAutoloadFlow):
-    CISCO_MIBS_FOLDER = os.path.join(os.path.dirname(__file__), os.pardir, "../autoload", "mibs")
+    CISCO_MIBS_FOLDER = os.path.join(os.path.dirname(__file__), os.pardir, "autoload", "mibs")
 
-    def __init__(self, logger, snmp_handler):
+    def __init__(self, snmp_handler, logger):
         super(DNOSSnmpAutoloadFlow, self).__init__(logger)
         self._snmp_handler = snmp_handler
 
