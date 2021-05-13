@@ -51,6 +51,9 @@ class EnableCommandMode(CommandMode):
             ]
         )
 
+    def enter_actions(self, cli_service):
+        cli_service.send_command("terminal length 0")
+
 
 class ConfigCommandMode(CommandMode):
     PROMPT = r'^.*\(conf.*\)#\s*$'

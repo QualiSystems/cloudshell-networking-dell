@@ -5,7 +5,8 @@ from collections import OrderedDict
 from cloudshell.cli.command_template.command_template import CommandTemplate
 
 ERROR_MAP = OrderedDict({"[Ii]nvalid\s*([Ii]nput|[Cc]ommand)|[Cc]ommand rejected":
-                             "Failed to initialize snmp. Please check Logs for details."})
+                             "Failed to initialize snmp. Please check Logs for details.",
+                         "Error:": "Error occurred, see logs for details."})
 
 SHOW_SNMP_COMMUNITY = CommandTemplate("do show running-config | include snmp-server community", error_map=ERROR_MAP)
 SHOW_SNMP_CONFIG = CommandTemplate("show running-config | grep snmp-server", error_map=ERROR_MAP)

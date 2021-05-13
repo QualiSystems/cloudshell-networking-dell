@@ -21,6 +21,7 @@ class DNOSEnableDisableSNMPFlow(EnableDisableSnmpFlowInterface):
         """
         self._cli_configurator = cli_configurator
         self._logger = logger
+        self._create_group = True
 
     def enable_snmp(self, snmp_parameters):
         with self._cli_configurator.enable_mode_service() as cli_service:
@@ -57,9 +58,10 @@ class DNOSEnableDisableSNMPFlow(EnableDisableSnmpFlowInterface):
         :param cloudshell.networking.dell.command_actions.enable_disable_snmp_actions.EnableDisableSnmpActions snmp_actions:
         :param cloudshell.snmp.snmp_parameters.SNMPV3Parameters snmp_parameters:
         """
-        current_snmp_users = snmp_actions.get_snmp_users()
+        # current_snmp_users = snmp_actions.get_snmp_users()
+        current_snmp_users = ""
         if snmp_parameters.snmp_user not in current_snmp_users:
-            self._validate_snmp_v3_params(snmp_parameters)
+            # self._validate_snmp_v3_params(snmp_parameters)
             if self._create_group:
                 current_snmp_config = snmp_actions.get_current_snmp_config()
                 if "snmp-server view {}".format(self.DEFAULT_SNMP_VIEW) not in current_snmp_config:

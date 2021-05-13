@@ -60,10 +60,11 @@ class EnableDisableSnmpActions(object):
         :return:
         """
 
-        output = CommandTemplateExecutor(cli_service=self._cli_service,
-                                         command_template=enable_disable_snmp.SHOW_SNMP_USERS,
-                                         action_map=action_map,
-                                         error_map=error_map).execute_command()
+        with self._cli_service.enter_mode(self._config_mode):
+            output = CommandTemplateExecutor(cli_service=self._cli_service,
+                                             command_template=enable_disable_snmp.SHOW_SNMP_USERS,
+                                             action_map=action_map,
+                                             error_map=error_map).execute_command()
         return re.findall(r'^user\sname\s*:\s*(\w+)\s*$', output, flags=re.IGNORECASE | re.MULTILINE)
 
     def enable_snmp(self, snmp_community, is_read_only_community=True, action_map=None, error_map=None):
